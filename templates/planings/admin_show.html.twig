@@ -1,0 +1,38 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}Planing{% endblock %}
+
+{% block body %}
+    <h1>Planing</h1>
+    <div class="bg-white border rounded-5" style="
+    margin-left: 30%;
+">
+
+        <section class="w-100 p-4 text-center table-responsive">
+            <table class="table" >
+
+                <tbody>
+                <tr>
+                    <th>Service</th>
+                    <td>{{ planing.service.nomSer }}</td>
+                </tr>
+                <tr>
+                    <th>Rendezvous</th>
+                    <td>{{ planing.rendezvous.date}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </section>
+
+
+
+        <a class="btn btn-primary" href="{{ path('app_planings_index') }}">back to list</a>
+
+        <a class="btn btn-primary" href="{{ path('app_planings_edit', {'id': planing.id}) }}">edit</a>
+
+        {{ include('planings/_delete_form.html.twig') }}
+
+    </div>
+
+
+{% endblock %}

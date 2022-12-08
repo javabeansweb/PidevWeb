@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Planing index{% endblock %}
+
+{% block body %}
+    <h1>Planing list</h1>
+    <div class="bg-white border rounded-5">
+        <section class="w-100 p-4 text-center table-responsive">
+            <table class="table" >
+                <thead class="table-light">
+                <tr>
+                    <th scope="col">planing</th>
+                    <th scope="col">actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for planing in planings %}
+                    <tr>
+                        <td>{{ planing.id}}</td>
+                        <td>
+                            <a  class="btn btn-primary" href="{{ path('app_planings_show', {'id': planing.id}) }}">show</a>
+                            <a class="btn btn-success" href="{{ path('app_planings_edit', {'id': planing.id}) }}">edit</a>
+                        </td>
+
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="4">no records found</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            <a href="{{ path('app_planings_new') }}">Create new</a>
+        </section>
+        <div class="p-4 text-center border-top mobile-hidden">
+            <a class="btn btn-link px-3" data-mdb-toggle="collapse" href="#example18" role="button" aria-expanded="true" aria-controls="example18" data-ripple-color="hsl(0, 0%, 67%)" style="">
+                <i class="fas fa-code me-md-2"></i>
+                <span class="d-none d-md-inline-block">
+          Show code
+        </span>
+            </a>
+
+
+            <a class="btn btn-link px-3" data-ripple-color="hsl(0, 0%, 67%)" style="">
+                <i class="fas fa-file-code me-md-2 pe-none"></i>
+                <span class="d-none d-md-inline-block export-to-snippet pe-none">
+            Edit in sandbox
+          </span>
+            </a>
+        </div>
+    </div>
+
+{% endblock %}

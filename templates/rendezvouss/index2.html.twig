@@ -1,0 +1,16 @@
+
+{% for rendezvou in rendezvouses %}
+<tr>
+    <td>{{ rendezvou.id }}</td>
+    <td>{{ rendezvou.date ? rendezvou.date|date('Y-m-d') : '' }}</td>
+    <td>{{ rendezvou.service.nomSer }}</td>
+    <td>{{ rendezvou.contrat }}</td>
+    <td>
+        <a href="{{ path('app_rendezvouss_admin_show', {'id': rendezvou.id}) }}">show</a>
+    </td>
+</tr>
+{% else %}
+<tr>
+    <td colspan="4">no records found</td>
+</tr>
+{% endfor %}

@@ -1,0 +1,32 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}Rendezvous{% endblock %}
+
+{% block body %}
+    <h1>Rendezvous</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Reference</th>
+                <td>{{ rendezvou.id }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{{ rendezvou.date ? rendezvou.date|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Service</th>
+                <td>{{ rendezvou.Service.nomSer }}</td>
+            </tr>
+            <tr>
+                <th>Contrat</th>
+                <td>{{ rendezvou.contrat }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_rendezvouss_admin_index') }}">back to list</a>
+
+    {{ include('rendezvouss/_delete_form.html.twig') }}
+{% endblock %}

@@ -1,0 +1,60 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}Rendezvous index{% endblock %}
+
+{% block body %}
+    <h1>Rendezvous index</h1>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Reference</th>
+            <th>Date</th>
+            <th>Service</th>
+            <th>Contrat</th>
+            <th>actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for rendezvou in rendezvouses %}
+            <tr>
+                <td>{{ rendezvou.id }}</td>
+                <td>{{ rendezvou.date ? rendezvou.date|date('Y-m-d') : '' }}</td>
+                <td>{{ rendezvou.service.nomSer }}</td>
+                <td>{{ rendezvou.contrat }}</td>
+                <td>
+                    <a href="{{ path('app_rendezvouss_admin_show', {'id': rendezvou.id}) }}">show</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+
+    </table>
+    {{ knp_pagination_render(rendezvouses) }}
+
+    <div>
+        <h2>Statistiques:</h2>
+        <h3>Total:({{ rendezvouses.getTotalItemCount }})</h3>
+        <canvas id="rendezvouses" width="500" height="100"></canvas>
+        <script>
+            let services = document.querySelector("#services")
+            let servicesGraph = new Chart(services, {
+                type: "pie",
+                data: {
+                    labels: {{ serviceNom|raw }},
+                    datasets: [{
+                        label: "Service",
+                        data: {{ serviceCount|raw }},
+                        backgroundColor: ["green", "blue", "red"]
+                    }]
+                }
+            })
+        </script>
+
+    </div>
+
+{% endblock %}

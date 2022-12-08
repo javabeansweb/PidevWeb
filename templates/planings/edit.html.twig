@@ -1,0 +1,20 @@
+
+
+{% extends 'base.html.twig' %}
+
+{% block title %}New Planing{% endblock %}
+
+{% block body %}
+    <div style="
+    margin-left: 29%;
+    margin-top: 20%;
+">
+        <h1>Edit Planing</h1>
+
+        {{ include('planings/_form.html.twig', {'button_label': 'Update'}) }}
+
+        <a href="{{ path('app_planings_index') }}">back to list</a>
+
+        {{ include('planings/_delete_form.html.twig') }}
+    </div>
+{% endblock %}

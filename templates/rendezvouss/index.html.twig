@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Rendezvous index{% endblock %}
+
+{% block body %}
+    <h1>Rendezvous index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Date</th>
+                <th>Service</th>
+                <th>Contrat</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody id="all">
+        {% for rendezvou in rendezvouses %}
+            <tr>
+                <td>{{ rendezvou.id }}</td>
+                <td>{{ rendezvou.date ? rendezvou.date|date('Y-m-d') : '' }}</td>
+                <td>{{ rendezvou.service.nomSer }}</td>
+                <td>{{ rendezvou.contrat }}</td>
+                <td>
+                    <a href="{{ path('app_rendezvouss_show', {'id': rendezvou.id}) }}">show</a>
+                    <a href="{{ path('app_rendezvouss_edit', {'id': rendezvou.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+        <tbody id="tableac">
+        </tbody>
+        <form class="searchrendezvous">
+            <div class="sidebar-search">
+                <div class="input-group custom-search-form">
+                    <input type="text" id="searchrendezvous" name="searchrendezvous" class="form-control"
+                           placeholder="search">
+                </div>
+            </div>
+        </form>
+    </table>
+
+    <a href="{{ path('app_rendezvouss_new') }}">Create new</a>
+    {{ knp_pagination_render(rendezvouses) }}
+
+{% endblock %}
