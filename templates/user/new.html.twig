@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+<div class="bdstyle" style="margin: 150px 0px 0px 600px;">
+    <h1>Create new User</h1>
+
+    {{ include('user/_form.html.twig') }}
+
+    {{ form_errors(form.fullname,{'attr':{'class':'form-danger'}})}}
+
+
+    <a href="{{ path('app_user_index') }}">back to list</a>
+</div>
+{% endblock %}

@@ -1,0 +1,82 @@
+{% extends 'base.html.twig' %}
+{% block header %}
+    <link href="{{asset('https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap')}}" rel="stylesheet">
+    <link href="{{asset('assetsLogin/fonts/icomoon/style.css')}}" rel="stylesheet">
+    <link href="{{asset('assetsLogin/css/owl.carousel.min.css')}}" rel="stylesheet">
+    <link href="{{asset('assetsLogin/css/style.css')}}" rel="stylesheet">
+{% endblock %}
+
+{% block sidebar %}
+
+{% endblock %}
+
+{% block footer %}
+
+{% endblock %}
+{% block section %}
+{% endblock %}
+{% block body %}
+    <div class="content card mb-3">
+        <div class="container">
+            <div class="row ">
+                <div class="col-md-6">
+                    <img src="img/login.jpg" alt="Image" class="img-fluid" >
+                </div>
+                <div class="col-md-6 contents">
+                    <div class="row justify-content-center">
+                        <div class="col-md-8">
+                            <div class="mb-4">
+                                {% if error %}
+                                    <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                                {% endif %}
+
+                                {% if app.user %}
+                                    <div class="mb-3">
+                                        You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+                                    </div>
+                                {% endif %}
+                                <h3>Login to Your Account</h3>
+                                <p class="mb-4">Enter your username &amp; password to login</p>
+                            </div>
+                            <form action="#" method="post">
+                                <div class="form-group first">
+                                    <label for="username">Username</label>
+                                    <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control"  autocomplete="email" required autofocus>
+
+                                </div>
+                                <br>
+                                <div class="form-group last mb-4">
+                                    <label for="password">Password</label>
+                                    <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+
+                                </div>
+                                <input type="hidden" name="_csrf_token"
+                                       value="{{ csrf_token('authenticate') }}"
+                                >
+
+
+                                <div class="col-12">
+                                    <button class="btn btn-primary w-100" type="submit">Login</button>
+                                </div>
+                                <p class="small mb-0">Don't have account? <a href="{{ path('app_register') }}">Create an account</a></p>
+
+
+
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
+{% block javascripts %}
+    <script src="{{asset('assetsLogin/js/jquery-3.3.1.min.js') }}"></script>
+    <script src="{{asset('assetsLogin/js/popper.min.js') }}"></script>
+    <script src="{{asset('assetsLogin/js/bootstrap.min.js') }}"></script>
+    <script src="{{asset('assetsLogin/js/main.js') }}"></script>
+{% endblock %}
