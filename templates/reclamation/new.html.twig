@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+{% block sidebar %}
+{% endblock %}
+{% block section %}
+    <h1>Ajouter Reclamation</h1>
+
+    {{ include('reclamation/_form.html.twig') }}
+
+    <button class="btn btn-outline-secondary"><a href="{{ path('app_reclamation') }}">back</a></button>
+{% endblock %}

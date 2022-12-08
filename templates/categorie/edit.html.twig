@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+{% block sidebar %}
+{% endblock %}
+{% block section %}
+    <h1>Edit Categorie</h1>
+
+    {{ include('categorie/_form.html.twig', {'button_label': 'Update'}) }}
+
+<button class="btn btn-outline-secondary"><a href="{{ path('app_categorie_index') }}">back</a></button>
+
+    {{ include('categorie/_delete_form.html.twig') }}
+{% endblock %}

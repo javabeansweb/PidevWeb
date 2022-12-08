@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+{% block section %}
+    <h1>Categorie index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                
+                <th>Nom Categorie</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for categorie in categories %}
+            <tr>
+                
+                <td>{{ categorie.nomCategorie }}</td>
+                <td>
+                    <button style="background-color: #008a00 "class="btn btn-outline-success"><a style="color: white" href="{{ path('app_categorie_show', {'id': categorie.id}) }}">show</a></button>
+                    <button style="background-color: #a52834" class="btn btn-outline-dange"><a style="color: white" href="{{ path('app_categorie_edit', {'id': categorie.id}) }}">edit</a></button>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <button class="btn btn-outline-primary"><a href="{{ path('app_categorie_new') }}">Ajouter Categorie</a></button>
+{% endblock %}

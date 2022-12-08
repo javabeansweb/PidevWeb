@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+{% block sidebar %}
+{% endblock %}
+{% block section %}
+    <h1>Reclamation</h1>
+<div class="row">
+    <div class="col-3">
+        <h1>Filtrer</h1>
+        {{  form(form) }}
+    </div>
+</div>
+    <div>
+
+            <table class="table">
+                <div class="col-9">
+                     <thead>
+                        <tr>
+
+                            <th style="color: #0a58ca">NOM DE CLIENT</th>
+                            <th style="color: #0a58ca">NOM D'EMPLOYE</th>
+                            <th style="color: #0a58ca">CATEGORIE</th>
+                            <th style="color: #0a58ca">EMAIL</th>
+                            <th style="color: #0a58ca">NUMERO TELEPHONE</th>
+                            <th style="color: #0a58ca">TEXTE DE RECLAMATION</th>
+                            <th style="color: #0a58ca">DATE DE RECLAMATION</th>
+                            <th style="color: #0a58ca">ACTION</th>
+                    </tr>
+                </thead>
+                </div>
+        <tbody>
+
+            {% for reclamation in reclamations %}
+                <tr>
+
+                    <td>{{ reclamation.fullnameRecS }}</td>
+                    <td>{{ reclamation.fullnameRecR }}</td>
+                    <td>{{ reclamation.Categorie.nomCategorie }}</td>
+                    <td>{{ reclamation.mail }}</td>
+                    <td>{{ reclamation.numTel }}</td>
+                    <td>{{ reclamation.textRec }}</td>
+                    <td>{{ reclamation.dateDeRec ? reclamation.dateDeRec|date('Y-m-d') : '' }}</td>
+                    <td>
+                        <button style="background-color: #008a00 "class="btn btn-outline-success"><a style="color: white"href="{{ path('app_reclamation_show', {'id': reclamation.id}) }}">Afficher</a></button><br/>
+                        <button style="background-color: #a52834" class="btn btn-outline-dange"><a style="color: white" href="{{ path('app_reclamation_edit', {'id': reclamation.id}) }}">Editer</a></button>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="8">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+    </table>
+    </div>
+    <button class="btn btn-outline-primary"> <a href="{{ path('app_reclamation_new') }}">Ajouter Reclamation</a></button>
+{% endblock %}
